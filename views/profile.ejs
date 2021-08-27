@@ -76,8 +76,7 @@
         <header>
             <center><h1>Welcome to your profile, <%= user %></h1></center>
             <ul>
-            <%task.forEach((element) => { %>
-                <%console.log(element)%>
+            <%task.forEach((element) => { %>                
                 <li><div><%=element.description%></div>
                 <div>
                 <form method="get" action=<%= "/profile/tasks/delete/"+element._id %> name="hello">                
@@ -89,12 +88,28 @@
             </ul>
             <br>
 
+            <script>
+                function validateForm(formId)
+                {
+                    var inputs, index;
+                    var form=document.getElementById(formId);
+                    inputs = form.getElementsByTagName('input');
+                    for (index = 0; index < inputs.length; ++index) {
+                        // deal with inputs[index] element.
+                        if (inputs[index].value==null || inputs[index].value=="")
+                        {
+                            alert("Field is empty");
+                            return false;
+                        }
+                    }
+                }
+        </script>
             
-            <form method="post" class="post" action="/profile/add" name="hello">  
+            <form method="post" class="post" action="/profile/add" name="hello" id="hello" onsubmit="return validateForm('hello')";">  
                 <ul>
                 <li>  
                 <div>            
-                <input class="send" type="text" id="add" name="add" placeholder="Add a new task"><br>
+                <input class="send" type="text" id="add" name="add" placeholder="Add a new task" required><br>
                 </div>  
                 <div>
                 <input class="send" type="submit" value="ADD" />
