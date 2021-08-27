@@ -76,7 +76,10 @@
         <header>
             <center><h1>Welcome to your profile, <%= user %></h1></center>
             <ul>
-            <%task.forEach((element) => { %>                
+            <% var count=0; %>
+            <%task.forEach((element) => { %> 
+                
+                <% count++; %>               
                 <li><div><%=element.description%></div>
                 <div>
                 <form method="get" action=<%= "/profile/tasks/delete/"+element._id %> name="hello">                
@@ -84,7 +87,11 @@
                 </form>
             </div>
                 </li>
+            
             <% })%>
+            <div><p><b><%=count%> MORE THINGS TO DO</b></p></div>
+            
+
             </ul>
             <br>
 
@@ -103,7 +110,8 @@
                         }
                     }
                 }
-        </script>
+
+            </script>
             
             <form method="post" class="post" action="/profile/add" name="hello" id="hello" onsubmit="return validateForm('hello')";">  
                 <ul>
