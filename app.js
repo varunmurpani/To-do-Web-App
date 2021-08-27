@@ -11,7 +11,6 @@ const bodyParser = require('body-parser')
 
 const app = express();
 
-
 var http = require('http');
 
 app.set('view engine', 'ejs');
