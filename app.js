@@ -1,5 +1,5 @@
 const express = require('express');
-const keys = require('./config/keys');
+require('dotenv').config();
 const passport = require('passport');
 const cookieSession = require('cookie-session');
 require('./config/passport-setup');
@@ -23,11 +23,11 @@ app.use(bodyParser.urlencoded({ extended: false }))
 //configure session storage
 app.use(cookieSession({
   name: 'session-name',
-  keys: [keys.session.cookieKey]
+  keys: [process.env.COOKIE_KEY]
 }))
 
 //connect to mongodb
-mongoose.connect(keys.mongodb.dbURI, { useNewUrlParser: true, useUnifiedTopology: true }, () => {
+mongoose.connect(process.env.DB_URI, { useNewUrlParser: true, useUnifiedTopology: true }, () => {
     console.log('connected to mongodb');
 });
 
