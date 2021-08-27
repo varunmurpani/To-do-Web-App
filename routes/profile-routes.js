@@ -32,15 +32,15 @@ router.post('/add', jsonParser, checkUserLoggedIn, async (req, res) => {
 
 
 //delete a task
-router.delete('/tasks/:id',jsonParser, checkUserLoggedIn, async (req, res) => {
+router.get('/tasks/delete/:id',jsonParser, checkUserLoggedIn, async (req, res) => {
     try {
-        const task = await Task.findOneAndDelete({sub: req.params.id})
+        const task = await Task.deleteOne({_id: req.params.id})
 
         if (!task) {
             res.status(404).send()
-        }
+        } 
 
-        res.send(task)
+        res.redirect('/profile')
     } catch (e) {
         res.status(500).send()
     }

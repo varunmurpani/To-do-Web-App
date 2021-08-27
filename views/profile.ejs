@@ -45,6 +45,21 @@
             main p{
                 display: inline-block;
             }
+
+            li{
+                display: flex;
+                padding-top: 12px;
+                align-content: center;
+            }
+
+            div{
+                flex: 1;
+            }
+
+            .delete{
+                margin-left: 50px;
+            }
+
         </style>        
     </head>
     
@@ -53,28 +68,41 @@
         <nav>
             <ul>
                
-                <li><a href="/logout">Log out</a></li>           
-                
-                               
+                <li><a href="/logout">Log out</a></li>                        
                 <li><a href="/profile">Profile</a></li>
+
             </ul>
         </nav>
         <header>
-            <h1>Welcome to your profile, <%= user %></h1> 
-            
+            <center><h1>Welcome to your profile, <%= user %></h1></center>
+            <ul>
             <%task.forEach((element) => { %>
                 <%console.log(element)%>
-                <li><%=element.description%></li>
-                <%element._id%>
-                <form method="delete" action=<%= "tasks/"+element._id %> name="hello">                
-                    <input type="submit" value="Delete" />
+                <li><div><%=element.description%></div>
+                <div>
+                <form method="get" action=<%= "/profile/tasks/delete/"+element._id %> name="hello">                
+                    <input class="delete" type="submit" value="Delete" />
                 </form>
+            </div>
+                </li>
             <% })%>
+            </ul>
+            <br>
 
-            <form method="post" action="/profile/add" name="hello">                
-                <input type="text" id="add" name="add" placeholder="Add a new task"><br>
-                <input type="submit" value="ADD" />
+            
+            <form method="post" class="post" action="/profile/add" name="hello">  
+                <ul>
+                <li>  
+                <div>            
+                <input class="send" type="text" id="add" name="add" placeholder="Add a new task"><br>
+                </div>  
+                <div>
+                <input class="send" type="submit" value="ADD" />
+                </div>
+            </li>
+        </ul>
             </form>
+        
             
         </header>     
         
